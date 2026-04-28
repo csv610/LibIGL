@@ -136,7 +136,35 @@ Try to implement a "Mesh Smoothing" filter.
 
 ---
 
-## 9. Where to Go Next?
+## 9. Mesh Boolean Operations (CSG)
+Constructive Solid Geometry (CSG) allows you to create complex shapes by combining simpler ones using logical operations: **Union**, **Intersection**, and **Subtraction (Minus)**.
+
+### Using CGAL Booleans
+LibIGL leverages the **CGAL** library to perform robust mesh booleans. Like TetGen, this is in the `copyleft` namespace.
+
+```cpp
+#include <igl/copyleft/cgal/mesh_boolean.h>
+
+Eigen::MatrixXd VC; // Result vertices
+Eigen::MatrixXi FC; // Result faces
+Eigen::VectorXi J;  // Birth facets (mapping to source faces)
+
+// Perform Union (Mesh A + Mesh B)
+igl::copyleft::cgal::mesh_boolean(VA, FA, VB, FB, 
+    igl::MESH_BOOLEAN_TYPE_UNION, VC, FC, J);
+```
+
+### Supported Operations
+*   `MESH_BOOLEAN_TYPE_UNION`: Combine both meshes.
+*   `MESH_BOOLEAN_TYPE_INTERSECT`: Only the volume shared by both.
+*   `MESH_BOOLEAN_TYPE_MINUS`: Remove volume of B from A.
+*   `MESH_BOOLEAN_TYPE_XOR`: Volume in A or B, but not both.
+
+> **Note:** For booleans to work correctly, your input meshes must be "solid" (manifold and watertight).
+
+---
+
+## 10. Where to Go Next?
 Check the `tutorial/` folder for 100+ interactive examples covering:
 *   **Parameterization:** Flattening a 3D mesh to a 2D UV map.
 *   **Deformation:** Moving a handle and watching the rest of the mesh follow "As-Rigid-As-Possible" (ARAP).
