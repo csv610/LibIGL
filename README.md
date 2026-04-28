@@ -1,13 +1,39 @@
-# libigl - A simple C++ geometry processing library
+# libigl (Fork with CLI & Documentation)
 
-[![](https://github.com/libigl/libigl/workflows/Build/badge.svg?event=push)](https://github.com/libigl/libigl/actions?query=workflow%3ABuild+branch%3Amain+event%3Apush)
-[![](https://anaconda.org/conda-forge/igl/badges/installer/conda.svg)](https://anaconda.org/conda-forge/igl)
+**Disclaimer:** This repository is a copy of the original [libigl](https://github.com/libigl/libigl) work. **Absolutely no credit is taken for the original library or its mathematical implementations.** The core geometry processing algorithms are the brilliant work of the original libigl contributors.
 
-![](https://libigl.github.io/libigl-teaser.png)
+---
 
-Documentation, tutorial, and instructions at <https://libigl.github.io>.
+## 🌟 About this Fork
+This version of the library has been modified to enhance its accessibility for researchers and undergraduate students. While the core engine remains identical to the original, this repository includes several additive contributions:
 
+### 🛠 Contributions in this version:
+1.  **CLI Applications Suite:** A comprehensive set of over 80 Command Line Interface (CLI) applications (located in the `/cli` folder). These allow users to run libigl algorithms (like Ray Tracing, Boolean operations, and Geodesic distances) directly from the terminal without writing C++ code.
+2.  **Extended Testing:** Implementation of rigorous build and verification steps to ensure the CLI tools work seamlessly across different platforms.
+3.  **Undergraduate User Guide:** A new, book-style documentation (`docs/UserGuide.md`) tailored specifically for students learning Discrete Differential Geometry.
+4.  **RandomRotate Utility:** A new utility for applying random transformations to meshes, useful for data augmentation and testing.
 
-| 🆕 Doxygen Documentation |
-|:---|
-| The latest version of libigl (v2.5.0) introduces [doxygen generated detailed documentation](https://libigl.github.io/dox/index.html) |
+---
+
+## 📖 Getting Started
+For students and new users, we recommend starting with our new guide:
+👉 **[User Guide for Undergraduates](docs/UserGuide.md)**
+
+### Building the CLI Apps
+```bash
+cmake -B cli/build -S cli -DLIBIGL_GLFW=ON
+cmake --build cli/build --parallel 8
+```
+Executables will be generated in `cli/build/`.
+
+---
+
+## 🔗 Original Work
+For the official documentation, tutorials, and the most up-to-date core library, please visit the official libigl pages:
+- **Official Repository:** <https://github.com/libigl/libigl>
+- **Official Website:** <https://libigl.github.io>
+
+---
+
+## 📝 License
+This fork adheres to the original licensing of libigl (MPL2 for the core, and GPL for certain copyleft modules like TetGen and CGAL). Please refer to `LICENSE.MPL2` and `LICENSE.GPL` for details.
