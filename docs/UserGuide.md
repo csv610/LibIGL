@@ -72,7 +72,33 @@ igl::gaussian_curvature(V, F, K);
 
 ---
 
-## 5. Visualizing Your Work
+## 5. Tetrahedral Mesh Generation (TetMeshing)
+While surface meshes (triangles) are great for rendering, many simulations (like Finite Element Method or FEM) require a **volume mesh**. A volume mesh is typically composed of **tetrahedra** (four-sided solids).
+
+### Using TetGen
+LibIGL provides a wrapper for the famous **TetGen** library. Note that this is in the `copyleft` namespace because of TetGen's licensing.
+
+```cpp
+#include <igl/copyleft/tetgen/tetrahedralize.h>
+
+Eigen::MatrixXd TV; // Tet mesh vertices
+Eigen::MatrixXi TT; // Tet mesh indices (#T x 4)
+Eigen::MatrixXi TF; // Tet mesh boundary faces
+
+// "pq1.414a0.01" are tetgen switches for:
+// p: constrained Delaunay
+// q: quality (radius-edge ratio)
+// a: maximum volume constraint
+igl::copyleft::tetgen::tetrahedralize(V, F, "pq1.414a0.01", TV, TT, TF);
+```
+
+### Representation
+*   **TV:** Similar to `V`, a `#TV by 3` matrix of vertices.
+*   **TT:** A `#T by 4` matrix where each row indices four vertices in `TV` that form a tetrahedron.
+
+---
+
+## 6. Visualizing Your Work
 LibIGL includes a powerful, lightweight viewer based on GLFW and ImGui.
 
 ```cpp
@@ -88,7 +114,7 @@ viewer.launch();
 
 ---
 
-## 6. Building CLI Applications
+## 7. Building CLI Applications
 For research and batch processing, we often build Command Line Interface (CLI) apps. These apps typically follow this pattern:
 1.  **Parse Arguments:** Use `argparse` to get input/output paths.
 2.  **Process Geometry:** Apply rotations, translations, or curvature analysis.
@@ -102,7 +128,7 @@ V = (V * q.toRotationMatrix().transpose()).eval();
 
 ---
 
-## 7. Mathematical Exercise for Students
+## 8. Mathematical Exercise for Students
 Try to implement a "Mesh Smoothing" filter. 
 1. Compute the Laplacian $L$.
 2. Update the vertices: $V_{new} = V + \lambda L V$.
@@ -110,7 +136,7 @@ Try to implement a "Mesh Smoothing" filter.
 
 ---
 
-## 8. Where to Go Next?
+## 9. Where to Go Next?
 Check the `tutorial/` folder for 100+ interactive examples covering:
 *   **Parameterization:** Flattening a 3D mesh to a 2D UV map.
 *   **Deformation:** Moving a handle and watching the rest of the mesh follow "As-Rigid-As-Possible" (ARAP).
