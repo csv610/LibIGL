@@ -34,7 +34,8 @@ namespace igl
     typename DerivedFS,
     typename DerivedVT,
     typename DerivedFT,
-    typename DerivedD>
+    typename DerivedD,
+    typename DerivedJ>
     IGL_INLINE void exact_geodesic(
       const Eigen::MatrixBase<DerivedV> &V,
       const Eigen::MatrixBase<DerivedF> &F,
@@ -42,7 +43,8 @@ namespace igl
       const Eigen::MatrixBase<DerivedFS> &FS,
       const Eigen::MatrixBase<DerivedVT> &VT,
       const Eigen::MatrixBase<DerivedFT> &FT,
-      Eigen::PlainObjectBase<DerivedD> &D);
+      Eigen::PlainObjectBase<DerivedD> &D,
+      Eigen::PlainObjectBase<DerivedJ> &J);
 }
 
 #ifndef IGL_STATIC_LIBRARY

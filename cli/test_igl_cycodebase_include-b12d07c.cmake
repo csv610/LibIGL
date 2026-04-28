@@ -1,0 +1,5 @@
+if(EXISTS "/Users/csv610/Projects/Mesh/libigl/cli/test_igl_cycodebase_tests-b12d07c.cmake")
+  include("/Users/csv610/Projects/Mesh/libigl/cli/test_igl_cycodebase_tests-b12d07c.cmake")
+else()
+  add_test(test_igl_cycodebase_NOT_BUILT-b12d07c test_igl_cycodebase_NOT_BUILT-b12d07c)
+endif()
